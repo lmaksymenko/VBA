@@ -1,4 +1,5 @@
-Public Sub SaveWorksheetsAsCsv()
+Sub SaveAsCSV()
+
 Dim xWs As Worksheet
 Dim xDir As String
 Dim folder As FileDialog
@@ -6,6 +7,16 @@ Set folder = Application.FileDialog(msoFileDialogFolderPicker)
 If folder.Show <> -1 Then Exit Sub
 xDir = folder.SelectedItems(1)
 For Each xWs In Application.ActiveWorkbook.Worksheets
+xWs.Cells.NumberFormat = "General"
 xWs.SaveAs xDir & "\" & xWs.Name, xlCSV
 Next
+
 End Sub
+
+
+
+'TODO
+'Add Error => NaN
+'Add config section to select which sheets to change
+'add option to not conver to general (along with NaN)
+'make to orig file not convert to general too
